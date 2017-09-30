@@ -1,0 +1,116 @@
+		HTML AND JAVASCRIPT FILE
+
+<html>
+    <head>
+        <link rel="stylesheet" href="nice.css">
+    </head>
+    <body>
+        <script>
+var mx = 0, my = 0;
+var rx = 0, ry = 0;
+
+$(document).on("mousedown", function(fst) 
+{
+	mx = fst.clientX;
+	my = fst.clientY;
+	$(document).on("mousemove", mouseMoved);
+});
+$(document).on("mouseup", function() 
+{
+	$(document).off("mousemove", mouseMoved);
+});
+
+function mouseMoved(fst) {
+	var dx = fst.px - mx;
+	var dy = fst.py - my;
+
+	mx = fst.px;
+	my = fst.py;
+
+	ry -= dx * 0.1;
+	rx += dy * 0.1;
+
+	$("cube").css("transform", "translateZ(-100px) rx( " + rx + "deg) ry(" + ry + "deg)");
+}
+
+        </script>
+      <center>
+        <table>
+    <tbody>
+      <td>
+        <div class="box">
+          <div class="cube one">
+            <div class="side front"></div>
+            <div class="side back"></div>
+            <div class="side right"></div>
+            <div class="side left"></div>
+            <div class="side top"></div>
+            <div class="side bottom"></div>
+          </div>
+        </div>
+      </td>
+  </tbody>
+</table>
+    </center>
+</body>
+</html>
+
+			CSS FILE
+.one {
+  perspective:750px;
+}
+ .box {
+  width: 200px;
+  height: 200px;
+  margin: 75px 0 0 75px;
+  border: none;
+}
+.cube {
+  width: 100%;
+  height: 100%;
+  backface-visibility: visible;
+  perspective-origin: 150% 150%;
+  transform-style: preserve-3d;
+}
+.side {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+}
+
+.front { 
+  border-style: solid;
+  border-color: 0000ff;
+  transform: translateZ(50px);
+}
+
+.back {
+  color: black;
+  border-style: solid;
+  border-color: 0000ff;
+  transform: rotateY(180deg) translateZ(50px);
+}
+
+.right {
+  border-style: solid;
+  border-color: 0000ff;
+  transform: rotateY(90deg) translateZ(50px);
+}
+
+.left {
+  border-style: solid;
+  border-color: 0000ff;
+  transform: rotateY(-90deg) translateZ(50px);
+}
+
+.top {
+  border-style: solid;
+  border-color: 0000ff;
+  transform: rotateX(90deg) translateZ(50px);
+}
+
+.bottom {
+  border-style: solid;
+  border-color: 0000ff;
+  transform: rotateX(-90deg) translateZ(50px);
+}

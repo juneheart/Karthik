@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="nice.css">
+    </head>
+    <body>
+        <script>
+var mx = 0, my = 0;
+var rx = 0, ry = 0;
+
+$(document).on("mousedown", function(fst) 
+{
+	mx = fst.clientX;
+	my = fst.clientY;
+	$(document).on("mousemove", mouseMoved);
+});
+$(document).on("mouseup", function() 
+{
+	$(document).off("mousemove", mouseMoved);
+});
+
+function mouseMoved(fst) {
+	var dx = fst.px - mx;
+	var dy = fst.py - my;
+
+	mx = fst.px;
+	my = fst.py;
+
+	ry -= dx * 0.1;
+	rx += dy * 0.1;
+
+	$("cube").css("transform", "translateZ(-100px) rx( " + rx + "deg) ry(" + ry + "deg)");
+}
+
+        </script>
+      <center>
+        <table>
+    <tbody>
+      <td>
+        <div class="box">
+          <div class="cube one">
+            <div class="side front"></div>
+            <div class="side back"></div>
+            <div class="side right"></div>
+            <div class="side left"></div>
+            <div class="side top"></div>
+            <div class="side bottom"></div>
+          </div>
+        </div>
+      </td>
+  </tbody>
+</table>
+    </center>
+</body>
+</html>
